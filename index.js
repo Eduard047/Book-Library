@@ -1,5 +1,15 @@
-// Клас для представлення книги
+
+
+/**
+ * Клас для представлення книги
+ */
 class Book {
+    /**
+     * @param {string} title - Назва книги
+     * @param {string} author - Автор книги
+     * @param {number} year - Рік видання
+     * @param {boolean} available - Доступність книги
+     */
     constructor(title, author, year, available) {
         this.title = title;
         this.author = author;
@@ -8,13 +18,19 @@ class Book {
     }
 }
 
-// Клас для бібліотеки книг
+/**
+ * Клас для бібліотеки книг
+ */
 class BookLibrary {
     constructor() {
+        /** @type {Book[]} */
         this.books = [];
     }
 
-    // Додати нову книгу
+    /**
+     * Додати нову книгу
+     * @param {Book} book - Книга для додавання
+     */
     addBook(book) {
         // Перевірка на існування книги за назвою
         const existingBook = this.books.find(b => b.title === book.title);
@@ -26,7 +42,10 @@ class BookLibrary {
         console.log(`Книга "${book.title}" додана до бібліотеки.`);
     }
 
-    // Видалити книгу за назвою
+    /**
+     * Видалити книгу за назвою
+     * @param {string} title - Назва книги для видалення
+     */
     removeBook(title) {
         const index = this.books.findIndex(b => b.title === title);
         if (index !== -1) {
@@ -37,7 +56,9 @@ class BookLibrary {
         }
     }
 
-    // Показати всі книги
+    /**
+     * Показати всі книги
+     */
     listAllBooks() {
         if (this.books.length === 0) {
             console.log('Бібліотека пуста.');
@@ -49,7 +70,15 @@ class BookLibrary {
         });
     }
 
-    // Оновити інформацію про книгу
+    /**
+     * Оновити інформацію про книгу
+     * @param {number} index - Індекс книги для оновлення
+     * @param {Object} newInfo - Нові дані для книги
+     * @param {string} [newInfo.title] - Нова назва книги
+     * @param {string} [newInfo.author] - Новий автор книги
+     * @param {number} [newInfo.year] - Новий рік видання
+     * @param {boolean} [newInfo.available] - Нова доступність книги
+     */
     updateBook(index, newInfo) {
         if (index >= 0 && index < this.books.length) {
             this.books[index] = { ...this.books[index], ...newInfo };
@@ -59,7 +88,10 @@ class BookLibrary {
         }
     }
 
-    // Пошук книг за автором
+    /**
+     * Пошук книг за автором
+     * @param {string} author - Автор для пошуку
+     */
     findBooksByAuthor(author) {
         const result = this.books.filter(b => b.author === author);
         if (result.length === 0) {
@@ -72,7 +104,10 @@ class BookLibrary {
         });
     }
 
-    // Пошук книг за роком видання
+    /**
+     * Пошук книг за роком видання
+     * @param {number} year - Рік видання для пошуку
+     */
     findBooksByYear(year) {
         const result = this.books.filter(b => b.year === year);
         if (result.length === 0) {
@@ -85,7 +120,10 @@ class BookLibrary {
         });
     }
 
-    // Перевірка доступності книги
+    /**
+     * Перевірка доступності книги
+     * @param {string} title - Назва книги для перевірки
+     */
     checkAvailability(title) {
         const book = this.books.find(b => b.title === title);
         if (book) {
@@ -95,7 +133,9 @@ class BookLibrary {
         }
     }
 
-    // Генерація тестових даних
+    /**
+     * Генерація тестових даних
+     */
     generateTestData() {
         const titles = ['Книга A', 'Книга B', 'Книга C', 'Книга D', 'Книга @'];
         for (let i = 0; i < titles.length; i++) {
@@ -103,12 +143,16 @@ class BookLibrary {
         }
     }
 
-    // Показати кількість книг в бібліотеці
+    /**
+     * Показати кількість книг в бібліотеці
+     */
     countBooks() {
         console.log(`Кількість книг в бібліотеці: ${this.books.length}`);
     }
 
-    // Показати доступні книги
+    /**
+     * Показати доступні книги
+     */
     listAvailableBooks() {
         const availableBooks = this.books.filter(b => b.available);
         if (availableBooks.length === 0) {
@@ -121,7 +165,9 @@ class BookLibrary {
         });
     }
 
-    // Показати недоступні книги
+    /**
+     * Показати недоступні книги
+     */
     listUnavailableBooks() {
         const unavailableBooks = this.books.filter(b => !b.available);
         if (unavailableBooks.length === 0) {
